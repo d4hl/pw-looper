@@ -1,5 +1,7 @@
 # pw-looper
 
+![preview](assets/preview.png)
+
 Little Qt6 util for graphical managing of pipewire loopback module
 
 Tired of asking your friend on the other end: "how's my mic?"?

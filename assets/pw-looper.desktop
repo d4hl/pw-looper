@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=PW Looper
+Comment=PipeWire loopback utility
+Exec=pw-looper
+Icon=audio-card
+Terminal=false
+Categories=AudioVideo;Audio;
+StartupWMClass=pw-looper

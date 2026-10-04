@@ -47,6 +47,10 @@
               qt6.qtbase
               pipewire
             ];
+            postInstall = ''
+              substituteInPlace $out/share/applications/pw-looper.desktop \
+                --replace-fail 'Exec=pw-looper' "Exec=$out/bin/pw-looper"
+            '';
           };
         });
 

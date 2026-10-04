@@ -22,6 +22,7 @@ target_link_libraries(pw-looper PRIVATE Qt6::Widgets PkgConfig::PIPEWIRE)
 
 include(GNUInstallDirs)
 install(TARGETS pw-looper DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES assets/pw-looper.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
 
 # ── Packaging (deb/rpm) ───────────────────────────────────────────
 # CPACK_* must be set BEFORE include(CPack) — it snapshots them.
