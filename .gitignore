@@ -1,0 +1,15 @@
+build/
+result
+.direnv/
+.envrc
+*.o
+*.obj
+*.so
+*.dylib
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+__pycache__/
+*.pyc

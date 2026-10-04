@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+
+      - name: Build binary & packages
+        run: |
+          nix develop --command bash -c "
+            cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_INSTALL_RPATH='' -DCMAKE_SKIP_RPATH=ON
+            cmake --build build --target pw-looper
+            cd build && cpack -G 'DEB;RPM'
+          "
+          ls -la build/*.deb build/*.rpm
+
+      - name: Collect artifacts
+        run: |
+          mkdir -p artifacts
+          cp build/*.deb artifacts/
+          cp build/*.rpm artifacts/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pw-looper-x86_64-linux
+          path: artifacts/
+
+      - if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*
