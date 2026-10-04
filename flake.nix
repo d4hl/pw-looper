@@ -31,7 +31,7 @@
         {
           default = pkgs.stdenv.mkDerivation {
             pname = "pw-looper";
-            version = "0.1.0";
+            version = self.shortRev or "dirty"; # no .git in flake source, tag is unreachable
             src = nixpkgs.lib.cleanSourceWith {
               src = self;
               filter = path: type:
