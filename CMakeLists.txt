@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Network)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(PIPEWIRE REQUIRED IMPORTED_TARGET libpipewire-0.3)
 
@@ -18,7 +18,7 @@ add_executable(pw-looper
     src/main_window.hpp
     src/main_window.cpp)
 
-target_link_libraries(pw-looper PRIVATE Qt6::Widgets PkgConfig::PIPEWIRE)
+target_link_libraries(pw-looper PRIVATE Qt6::Widgets Qt6::Network PkgConfig::PIPEWIRE)
 
 include(GNUInstallDirs)
 install(TARGETS pw-looper DESTINATION ${CMAKE_INSTALL_BINDIR})
